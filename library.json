@@ -1,8 +1,8 @@
 {
-	"name": "<Library_Name>",
-	"version": "1.0.0",
-	"keywords": "<Library_Keywords>",
-	"description": "<Library_Description>",
+	"name": "AVR_Functions",
+	"version": "1.0.5",
+	"keywords": "AVR, Functions, Atmel",
+	"description": "AVR Functions for Atmel AVR microcontrollers",
 	"authors":
 	{
 		"name": "Mehmet Gunce Akkoyun",
@@ -11,7 +11,7 @@
 	},
 	"license": "MIT",
 	"frameworks": "arduino",
-	"headers": "<Library_Header_Name>.h",
+	"headers": "AVR_Functions.h",
 	"platforms":
 	[
 		"atmelavr",
@@ -20,14 +20,14 @@
 	"repository":
 	{
 		"type": "git",
-		"url": "https://github.com/akkoyun/<Repo_Name>.git"
+		"url": "https://github.com/akkoyun/AVR_Functions.git"
 	},
 	"examples": [
 		{
-			"name": "<Sample_Name>",
-			"base": "examples/<Sample_Folder>",
+			"name": "B107AA",
+			"base": "examples/B107AA",
 			"files": [
-				"<Sample_Name>.ino"
+				"B107AA.ino"
 			]
 		}
 	]

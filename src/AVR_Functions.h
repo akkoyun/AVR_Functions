@@ -91,6 +91,16 @@
 				// B108AA Module
 				#ifdef B108AA
 
+					// Define I2C Port
+					#define I2C_MUX_DS28C		1
+					#define I2C_MUX_HDC2010		2
+					#define I2C_MUX_SI1145		3
+					#define I2C_MUX_MPL3115		4
+					#define I2C_MUX_SDP810_X	5
+					#define I2C_MUX_SDP810_Y	6
+					#define I2C_MUX_SDP810_Z	7
+					#define I2C_MUX_Power		8
+
 					// Set GSM_POWER_EN as Output with Pull-Down
 					DDR_GSM_POWER_EN |= (1 << PIN_GSM_POWER_EN);
 					PORT_GSM_POWER_EN &= ~(1 << PIN_GSM_POWER_EN);
@@ -263,6 +273,131 @@
 
 				// Start Interrupts
 				sei();
+
+			}
+
+			// LED Function
+			void Module_LED(const uint8_t _Color, const uint8_t _Blink, const uint16_t _Interval) {
+
+				switch (_Color)	{
+
+					// Red Color
+					case RED: {
+
+						// Blink
+						for (size_t i = 0; i < _Blink; i++) {
+
+							// Turn ON Red LED
+							PIN_WRITE_RED_LED(true);
+
+							// Delay
+							delay(_Interval);
+
+							// Turn OFF Red LED
+							PIN_WRITE_RED_LED(false);
+
+							// Delay
+							delay(_Interval);
+
+						}
+
+						// End Case
+						break;
+
+					}
+
+					// Green Color
+					case GREEN: {
+
+						// Blink
+						for (size_t i = 0; i < _Blink; i++) {
+
+							// Turn ON Green LED
+							PIN_WRITE_GREEN_LED(true);
+
+							// Delay
+							delay(_Interval);
+
+							// Turn OFF Green LED
+							PIN_WRITE_GREEN_LED(false);
+
+							// Delay
+							delay(_Interval);
+
+						}
+
+						// End Case
+						break;
+
+					}
+
+					// Blue Color
+					case BLUE: {
+
+						// Blink
+						for (size_t i = 0; i < _Blink; i++) {
+
+							// Turn ON Blue LED
+							PIN_WRITE_BLUE_LED(true);
+
+							// Delay
+							delay(_Interval);
+
+							// Turn OFF Blue LED
+							PIN_WRITE_BLUE_LED(false);
+
+							// Delay
+							delay(_Interval);
+
+						}
+
+						// End Case
+						break;
+
+					}
+
+					// White Color
+					case WHITE: {
+
+						// Blink
+						for (size_t i = 0; i < _Blink; i++) {
+
+							// Turn ON White LED
+							PIN_WRITE_BLUE_LED(true);
+							PIN_WRITE_GREEN_LED(true);
+							PIN_WRITE_RED_LED(true);
+
+							// Delay
+							delay(_Interval);
+
+							// Turn OFF White LED
+							PIN_WRITE_BLUE_LED(false);
+							PIN_WRITE_GREEN_LED(false);
+							PIN_WRITE_RED_LED(false);
+
+							// Delay
+							delay(_Interval);
+
+						}
+
+						// End Case
+						break;
+
+					}
+
+					default: {
+
+						// Turn OFF all LED
+						PIN_WRITE_BLUE_LED(false);
+						PIN_WRITE_GREEN_LED(false);
+						PIN_WRITE_RED_LED(false);
+
+						// End Case
+						break;
+
+					}
+
+				}
 
 			}
 

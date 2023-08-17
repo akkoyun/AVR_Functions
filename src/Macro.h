@@ -6,6 +6,12 @@
 		#include <Arduino.h>
 	#endif
 
+	// Define LED Colors
+	#define WHITE 	0
+	#define RED 	1
+	#define GREEN 	2
+	#define BLUE 	3
+
 	// B107AA Module
 	#ifdef B107AA
 

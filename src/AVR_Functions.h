@@ -10,9 +10,6 @@
 #ifndef __AVR_Functions__
 #define __AVR_Functions__
 
-// Define B107AA Module
-#define B108AA
-
 	// Define LED Colors
 	#define WHITE 	0
 	#define RED 	1

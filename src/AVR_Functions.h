@@ -385,7 +385,7 @@
 						for (size_t i = 0; i < _Blink; i++) {
 
 							// Turn ON Red LED
-							#ifdef B107AA | B108AA
+							#if defined(B107AA) || defined(B108AA)
 								PORT_MCU_LED_RED |= (1 << PIN_MCU_LED_RED);
 							#endif
 
@@ -393,7 +393,7 @@
 							delay(_Interval);
 
 							// Turn OFF Red LED
-							#ifdef B107AA | B108AA
+							#if defined(B107AA) || defined(B108AA)
 								PORT_MCU_LED_RED &= ~(1 << PIN_MCU_LED_RED);
 							#endif
 
@@ -414,7 +414,7 @@
 						for (size_t i = 0; i < _Blink; i++) {
 
 							// Turn ON Green LED
-							#ifdef B107AA | B108AA
+							#if defined(B107AA) || defined(B108AA)
 								PORT_MCU_LED_GREEN |= (1 << PIN_MCU_LED_GREEN);
 							#endif
 
@@ -422,7 +422,7 @@
 							delay(_Interval);
 
 							// Turn OFF Green LED
-							#ifdef B107AA | B108AA
+							#if defined(B107AA) || defined(B108AA)
 								PORT_MCU_LED_GREEN &= ~(1 << PIN_MCU_LED_GREEN);
 							#endif
 
@@ -443,7 +443,7 @@
 						for (size_t i = 0; i < _Blink; i++) {
 
 							// Turn ON Blue LED
-							#ifdef B107AA | B108AA
+							#if defined(B107AA) || defined(B108AA)
 								PORT_MCU_LED_BLUE |= (1 << PIN_MCU_LED_BLUE);
 							#endif
 
@@ -451,7 +451,7 @@
 							delay(_Interval);
 
 							// Turn OFF Blue LED
-							#ifdef B107AA | B108AA
+							#if defined(B107AA) || defined(B108AA)
 								PORT_MCU_LED_BLUE &= ~(1 << PIN_MCU_LED_BLUE);
 							#endif
 
@@ -472,7 +472,7 @@
 						for (size_t i = 0; i < _Blink; i++) {
 
 							// Turn ON White LED
-							#ifdef B107AA | B108AA
+							#if defined(B107AA) || defined(B108AA)
 								PORT_MCU_LED_RED |= (1 << PIN_MCU_LED_RED);
 								PORT_MCU_LED_GREEN |= (1 << PIN_MCU_LED_GREEN);
 								PORT_MCU_LED_BLUE |= (1 << PIN_MCU_LED_BLUE);
@@ -482,7 +482,7 @@
 							delay(_Interval);
 
 							// Turn OFF White LED
-							#ifdef B107AA | B108AA
+							#if defined(B107AA) || defined(B108AA)
 								PORT_MCU_LED_RED &= ~(1 << PIN_MCU_LED_RED);
 								PORT_MCU_LED_GREEN &= ~(1 << PIN_MCU_LED_GREEN);
 								PORT_MCU_LED_BLUE &= ~(1 << PIN_MCU_LED_BLUE);
@@ -502,7 +502,7 @@
 					default: {
 
 						// Turn OFF all LED
-						#ifdef B107AA | B108AA
+						#if defined(B107AA) || defined(B108AA)
 							PORT_MCU_LED_RED &= ~(1 << PIN_MCU_LED_RED);
 							PORT_MCU_LED_GREEN &= ~(1 << PIN_MCU_LED_GREEN);
 							PORT_MCU_LED_BLUE &= ~(1 << PIN_MCU_LED_BLUE);
@@ -525,6 +525,9 @@
 
 					// Turn ON HeartBeat
 					PORT_HEARTBEAT |= (1 << PIN_HEARTBEAT);
+
+					// HeartBeat LED Blink
+					this->Module_LED(GREEN, 1, 100);
 
 					// Turn OFF HeartBeat
 					PORT_HEARTBEAT &= ~(1 << PIN_HEARTBEAT);

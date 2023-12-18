@@ -49,9 +49,6 @@
 		#define PIN_WRITE_GSM_COMMUNICATION_ENABLE(_State) (_State ? PORTJ &= 0b11011111 : PORTJ |= 0b00100000)
 		#define PIN_WRITE_GSM_ON_OFF(_State) (_State ? PORTJ |= 0b01000000 : PORTJ &= 0b10111111)
 		#define PIN_WRITE_GSM_SHUTDOWN(_State) (_State ? PORTJ |= 0b10000000 : PORTJ &= 0b01111111)
-		#define PIN_WRITE_RED_LED(_State) (_State ? PORTL |= 0b00000001 : PORTL &= 0b11111110)
-		#define PIN_WRITE_GREEN_LED(_State) (_State ? PORTL |= 0b00000010 : PORTL &= 0b11111101)
-		#define PIN_WRITE_BLUE_LED(_State) (_State ? PORTL |= 0b00000100 : PORTL &= 0b11111011)
 
 	#endif
 
@@ -64,7 +61,6 @@
 
 		// Power Macros
 		#define SLEEP() (PORT_DONE |= (1 << PIN_DONE))
-
 
 	#endif
 

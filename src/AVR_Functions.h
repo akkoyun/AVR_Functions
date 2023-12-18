@@ -43,48 +43,145 @@
 					// PORTB &= ~(1 << PB3);    // set pin 3 of Port B low
 					// PORTB |= (1 << PORTB3);  // set pin 3 high again
 
+					// Set RELAY_START as Output with Pull-Down
+					DDR_RELAY_START |= (1 << PIN_RELAY_START);
+					PORT_RELAY_START &= ~(1 << PIN_RELAY_START);
 
-					//  PORT A
-					DDRA = 0b11111111; PORTA = 0b00000000;
+					// Set RELAY_STOP as Output with Pull-Down
+					DDR_RELAY_STOP |= (1 << PIN_RELAY_STOP);
+					PORT_RELAY_STOP &= ~(1 << PIN_RELAY_STOP);
 
-					//  PORT B
-					DDRB &= 0b00001111; PORTB |= 0b11110000;	// Set NC pins.
+					// Set INT_ENERGY_1 as Input with Pull-Up
+					DDR_INT_ENERGY_1 &= ~(1 << PIN_INT_ENERGY_1);
+					PORT_INT_ENERGY_1 |= (1 << PIN_INT_ENERGY_1);
 
-					//  PORT C
-					DDRC = 0b11111111; PORTC = 0b00000000;
+					// Set INT_ENERGY_2 as Input with Pull-Up
+					DDR_INT_ENERGY_2 &= ~(1 << PIN_INT_ENERGY_2);
+					PORT_INT_ENERGY_2 |= (1 << PIN_INT_ENERGY_2);
 
-					//  PORT D
-					DDRD |= 0b11110000; PORTD &= 0b00001111;	// Set NC pins.
+					// Set INT_ENV as Input with Pull-Up
+					DDR_INT_ENV &= ~(1 << PIN_INT_ENV);
+					PORT_INT_ENV |= (1 << PIN_INT_ENV);
 
-					//  PORT E
-					DDRE |= 0b10001100; DDRE &= 0b01100111;	// Set NC pins.
-					PORTE |= 0b01100100; PORTE &= 0b01100111;	// Set NC pins.
+					// Set INT_RTC as Input with Pull-Up
+					DDR_INT_RTC &= ~(1 << PIN_INT_RTC);
+					PORT_INT_RTC |= (1 << PIN_INT_RTC);
 
-					//  PORT F
-					DDRF = 0b11111111; PORTF = 0b00000000;
+					// Set 3V8_EN as Output with Pull-Down
+					DDR_3V8_EN |= (1 << PIN_3V8_EN);
+					PORT_3V8_EN &= ~(1 << PIN_3V8_EN);
 
-					// PORT G
-					DDRG |= 0b00111111; PORTG &= 0b11000000;	// Set NC pins.
+					// Set RS485_DIR as Output with Pull-Down
+					DDR_RS485_DIR |= (1 << PIN_RS485_DIR);
+					PORT_RS485_DIR &= ~(1 << PIN_RS485_DIR);
 
-					//  PORT H
-					DDRH |= (1 << PH2); PORTH &= ~(1 << PH2);	// NC pin.
-					DDRH &= ~(1 << PH3); PORTH &= ~(1 << PH3);	// LCD_SENSE pin.
-					DDRH |= (1 << PH4); PORTH &= ~(1 << PH4);	// FOTA_POWER_EN pin.
-					DDRH &= ~(1 << PH5); PORTH &= ~(1 << PH5);	// SD_SENSE pin.
-					DDRH |= (1 << PH6); PORTH &= ~(1 << PH6);	// SD_MUX_SEL pin.
-					DDRH &= ~(1 << PH7); PORTH &= ~(1 << PH7);	// Terminal_SENSE pin.
+					// Set INT_RS485 as Input with Pull-Down
+					DDR_INT_RS485 &= ~(1 << PIN_INT_RS485);
+					PORT_INT_RS485 &= ~(1 << PIN_INT_RS485);
 
-					//  PORT J
-//					DDRJ = 0b11100000;
-//					PORTJ = 0b00100100;
-					DDRJ |= 0b11100000; DDRJ &= 0b11100011;
-					PORTJ |= 0b00000100; PORTJ &= 0b00000111;
+					// Set INT_CHARGER as Input with Pull-Up
+					DDR_INT_CHARGER &= ~(1 << PIN_INT_CHARGER);
+					PORT_INT_CHARGER |= (1 << PIN_INT_CHARGER);
 
-					//  PORT K
-					DDRK = 0b00000000; PORTK = 0b00000000;		// Set NC pins.
+					// Set INT_GAUGE as Input with Pull-Up
+					DDR_INT_GAUGE &= ~(1 << PIN_INT_GAUGE);
+					PORT_INT_GAUGE |= (1 << PIN_INT_GAUGE);
 
-					//  PORT L
-					DDRL = 0b11111111; PORTL = 0b00000000;
+					// Set 3V3_BUZZER as Output with Pull-Down
+					DDR_3V3_BUZZER |= (1 << PIN_3V3_BUZZER);
+					PORT_3V3_BUZZER &= ~(1 << PIN_3V3_BUZZER);
+
+					// Set LCD_SENSE as Input with Pull-Down
+					DDR_LCD_SENSE &= ~(1 << PIN_LCD_SENSE);
+					PORT_LCD_SENSE &= ~(1 << PIN_LCD_SENSE);
+
+					// Set FOTA_POWER_EN as Output with Pull-Down
+					DDR_FOTA_POWER_EN |= (1 << PIN_FOTA_POWER_EN);
+					PORT_FOTA_POWER_EN &= ~(1 << PIN_FOTA_POWER_EN);
+
+					// Set SD_SENSE as Input with Pull-Down
+					DDR_SD_SENSE &= ~(1 << PIN_SD_SENSE);
+					PORT_SD_SENSE &= ~(1 << PIN_SD_SENSE);
+
+					// Set SD_EN as Output with Pull-Down
+					DDR_SD_EN |= (1 << PIN_SD_EN);
+					PORT_SD_EN &= ~(1 << PIN_SD_EN);
+
+					// Set TERMINAL_SENSE as Input with Pull-Down
+					DDR_TERMINAL_SENSE &= ~(1 << PIN_TERMINAL_SENSE);
+					PORT_TERMINAL_SENSE &= ~(1 << PIN_TERMINAL_SENSE);
+
+					// Set GSM_RING as Input with Pull-Down
+					DDR_GSM_RING &= ~(1 << PIN_GSM_RING);
+					PORT_GSM_RING &= ~(1 << PIN_GSM_RING);
+
+					// Set GSM_PMON as Input with Pull-Down
+					DDR_GSM_PMON &= ~(1 << PIN_GSM_PMON);
+					PORT_GSM_PMON &= ~(1 << PIN_GSM_PMON);
+
+					// Set GSM_SWREADY as Input with Pull-Down
+					DDR_GSM_SWREADY &= ~(1 << PIN_GSM_SWREADY);
+					PORT_GSM_SWREADY &= ~(1 << PIN_GSM_SWREADY);
+
+					// Set GSM_COMM_EN as Output with Pull-Up
+					DDR_GSM_COMM_EN |= (1 << PIN_GSM_COMM_EN);
+					PORT_GSM_COMM_EN |= (1 << PIN_GSM_COMM_EN);
+
+					// Set GSM_ONOFF as Output with Pull-Down
+					DDR_GSM_ONOFF |= (1 << PIN_GSM_ONOFF);
+					PORT_GSM_ONOFF &= ~(1 << PIN_GSM_ONOFF);
+
+					// Set GSM_SDOWN as Output with Pull-Down
+					DDR_GSM_SDOWN |= (1 << PIN_GSM_SDOWN);
+					PORT_GSM_SDOWN &= ~(1 << PIN_GSM_SDOWN);
+
+					// Set 3V3_Sense_1 as Input with Pull-Down
+					DDR_3V3_Sense_1 &= ~(1 << PIN_3V3_Sense_1);
+					PORT_3V3_Sense_1 &= ~(1 << PIN_3V3_Sense_1);
+
+					// Set 3V3_Sense_2 as Input with Pull-Down
+					DDR_3V3_Sense_2 &= ~(1 << PIN_3V3_Sense_2);
+					PORT_3V3_Sense_2 &= ~(1 << PIN_3V3_Sense_2);
+
+					// Set 3V3_Sense_3 as Input with Pull-Down
+					DDR_3V3_Sense_3 &= ~(1 << PIN_3V3_Sense_3);
+					PORT_3V3_Sense_3 &= ~(1 << PIN_3V3_Sense_3);
+
+					// Set 3V3_Sense_4 as Input with Pull-Down
+					DDR_3V3_Sense_4 &= ~(1 << PIN_3V3_Sense_4);
+					PORT_3V3_Sense_4 &= ~(1 << PIN_3V3_Sense_4);
+
+					// Set 3V3_Sense_5 as Input with Pull-Down
+					DDR_3V3_Sense_5 &= ~(1 << PIN_3V3_Sense_5);
+					PORT_3V3_Sense_5 &= ~(1 << PIN_3V3_Sense_5);
+
+					// Set 3V3_Sense_6 as Input with Pull-Down
+					DDR_3V3_Sense_6 &= ~(1 << PIN_3V3_Sense_6);
+					PORT_3V3_Sense_6 &= ~(1 << PIN_3V3_Sense_6);
+
+					// Set 3V3_Sense_7 as Input with Pull-Down
+					DDR_3V3_Sense_7 &= ~(1 << PIN_3V3_Sense_7);
+					PORT_3V3_Sense_7 &= ~(1 << PIN_3V3_Sense_7);
+
+					// Set 3V3_Sense_8 as Input with Pull-Down
+					DDR_3V3_Sense_8 &= ~(1 << PIN_3V3_Sense_8);
+					PORT_3V3_Sense_8 &= ~(1 << PIN_3V3_Sense_8);
+
+					// Set MCU_LED_RED as Output with Pull-Down
+					DDR_MCU_LED_RED |= (1 << PIN_MCU_LED_RED);
+					PORT_MCU_LED_RED &= ~(1 << PIN_MCU_LED_RED);
+
+					// Set MCU_LED_GREEN as Output with Pull-Down
+					DDR_MCU_LED_GREEN |= (1 << PIN_MCU_LED_GREEN);
+					PORT_MCU_LED_GREEN &= ~(1 << PIN_MCU_LED_GREEN);
+
+					// Set MCU_LED_BLUE as Output with Pull-Down
+					DDR_MCU_LED_BLUE |= (1 << PIN_MCU_LED_BLUE);
+					PORT_MCU_LED_BLUE &= ~(1 << PIN_MCU_LED_BLUE);
+
+					// Set HEARTBEAT as Output with Pull-Down
+					DDR_HEARTBEAT |= (1 << PIN_HEARTBEAT);
+					PORT_HEARTBEAT &= ~(1 << PIN_HEARTBEAT);
 
 				#endif
 
@@ -288,13 +385,17 @@
 						for (size_t i = 0; i < _Blink; i++) {
 
 							// Turn ON Red LED
-							PIN_WRITE_RED_LED(true);
+							#ifdef B107AA | B108AA
+								PORT_MCU_LED_RED |= (1 << PIN_MCU_LED_RED);
+							#endif
 
 							// Delay
 							delay(_Interval);
 
 							// Turn OFF Red LED
-							PIN_WRITE_RED_LED(false);
+							#ifdef B107AA | B108AA
+								PORT_MCU_LED_RED &= ~(1 << PIN_MCU_LED_RED);
+							#endif
 
 							// Delay
 							delay(_Interval);
@@ -313,13 +414,17 @@
 						for (size_t i = 0; i < _Blink; i++) {
 
 							// Turn ON Green LED
-							PIN_WRITE_GREEN_LED(true);
+							#ifdef B107AA | B108AA
+								PORT_MCU_LED_GREEN |= (1 << PIN_MCU_LED_GREEN);
+							#endif
 
 							// Delay
 							delay(_Interval);
 
 							// Turn OFF Green LED
-							PIN_WRITE_GREEN_LED(false);
+							#ifdef B107AA | B108AA
+								PORT_MCU_LED_GREEN &= ~(1 << PIN_MCU_LED_GREEN);
+							#endif
 
 							// Delay
 							delay(_Interval);
@@ -338,13 +443,17 @@
 						for (size_t i = 0; i < _Blink; i++) {
 
 							// Turn ON Blue LED
-							PIN_WRITE_BLUE_LED(true);
+							#ifdef B107AA | B108AA
+								PORT_MCU_LED_BLUE |= (1 << PIN_MCU_LED_BLUE);
+							#endif
 
 							// Delay
 							delay(_Interval);
 
 							// Turn OFF Blue LED
-							PIN_WRITE_BLUE_LED(false);
+							#ifdef B107AA | B108AA
+								PORT_MCU_LED_BLUE &= ~(1 << PIN_MCU_LED_BLUE);
+							#endif
 
 							// Delay
 							delay(_Interval);
@@ -363,17 +472,21 @@
 						for (size_t i = 0; i < _Blink; i++) {
 
 							// Turn ON White LED
-							PIN_WRITE_BLUE_LED(true);
-							PIN_WRITE_GREEN_LED(true);
-							PIN_WRITE_RED_LED(true);
+							#ifdef B107AA | B108AA
+								PORT_MCU_LED_RED |= (1 << PIN_MCU_LED_RED);
+								PORT_MCU_LED_GREEN |= (1 << PIN_MCU_LED_GREEN);
+								PORT_MCU_LED_BLUE |= (1 << PIN_MCU_LED_BLUE);
+							#endif
 
 							// Delay
 							delay(_Interval);
 
 							// Turn OFF White LED
-							PIN_WRITE_BLUE_LED(false);
-							PIN_WRITE_GREEN_LED(false);
-							PIN_WRITE_RED_LED(false);
+							#ifdef B107AA | B108AA
+								PORT_MCU_LED_RED &= ~(1 << PIN_MCU_LED_RED);
+								PORT_MCU_LED_GREEN &= ~(1 << PIN_MCU_LED_GREEN);
+								PORT_MCU_LED_BLUE &= ~(1 << PIN_MCU_LED_BLUE);
+							#endif
 
 							// Delay
 							delay(_Interval);
@@ -385,12 +498,15 @@
 
 					}
 
+					// Default
 					default: {
 
 						// Turn OFF all LED
-						PIN_WRITE_BLUE_LED(false);
-						PIN_WRITE_GREEN_LED(false);
-						PIN_WRITE_RED_LED(false);
+						#ifdef B107AA | B108AA
+							PORT_MCU_LED_RED &= ~(1 << PIN_MCU_LED_RED);
+							PORT_MCU_LED_GREEN &= ~(1 << PIN_MCU_LED_GREEN);
+							PORT_MCU_LED_BLUE &= ~(1 << PIN_MCU_LED_BLUE);
+						#endif
 
 						// End Case
 						break;
@@ -398,6 +514,22 @@
 					}
 
 				}
+
+			}
+
+			// Heartbeat Function
+			void Heartbeat(void) {
+
+				// B107AA Module
+				#ifdef B107AA
+
+					// Turn ON HeartBeat
+					PORT_HEARTBEAT |= (1 << PIN_HEARTBEAT);
+
+					// Turn OFF HeartBeat
+					PORT_HEARTBEAT &= ~(1 << PIN_HEARTBEAT);
+
+				#endif
 
 			}
 

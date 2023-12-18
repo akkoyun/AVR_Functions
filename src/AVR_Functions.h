@@ -10,6 +10,15 @@
 #ifndef __AVR_Functions__
 #define __AVR_Functions__
 
+// Define B107AA Module
+#define B108AA
+
+	// Define LED Colors
+	#define WHITE 	0
+	#define RED 	1
+	#define GREEN 	2
+	#define BLUE 	3
+
 	// Define Arduino Library
 	#ifndef __Arduino__
 		#include <Arduino.h>
@@ -18,11 +27,6 @@
 	// Include Pin Out Definitions
 	#ifndef __PinOut__
 		#include "PinOut/PinOut.h"
-	#endif
-
-	// Include Pin Name Definitions
-	#ifndef __Macro__
-		#include "Macro.h"
 	#endif
 
 	// Define AVR Library
@@ -183,6 +187,41 @@
 					DDR_HEARTBEAT |= (1 << PIN_HEARTBEAT);
 					PORT_HEARTBEAT &= ~(1 << PIN_HEARTBEAT);
 
+					// Pin Read Macros
+					#define PIN_READ_ENERGY_INT1 (((PORT_INT_ENERGY_1) >> (PIN_INT_ENERGY_1)) & 0x01)
+					#define PIN_READ_ENERGY_INT2 (((PORT_INT_ENERGY_2) >> (PIN_INT_ENERGY_2)) & 0x01)
+					#define PIN_READ_ENV_INT (((PORT_INT_ENV) >> (PIN_INT_ENV)) & 0x01)
+					#define PIN_READ_RTC_INT (((PORT_INT_RTC) >> (PIN_INT_RTC)) & 0x01)
+					#define PIN_READ_RS485_INT (((PORT_INT_RS485) >> (PIN_INT_RS485)) & 0x01)
+					#define PIN_READ_CHARGER_INT (((PORT_INT_CHARGER) >> (PIN_INT_CHARGER)) & 0x01)
+					#define PIN_READ_GAUGE_INT (((PORT_INT_GAUGE) >> (PIN_INT_GAUGE)) & 0x01)
+					#define PIN_READ_LCD_SENSE (((PORT_LCD_SENSE) >> (PIN_LCD_SENSE)) & 0x01)
+					#define PIN_READ_SD_SENSE (((PORT_SD_SENSE) >> (PIN_SD_SENSE)) & 0x01)
+					#define PIN_READ_TERMINAL_SENSE (((PORT_TERMINAL_SENSE) >> (PIN_TERMINAL_SENSE)) & 0x01)
+					#define PIN_READ_GSM_RING (((PORT_GSM_RING) >> (PIN_GSM_RING)) & 0x01)
+					#define PIN_READ_GSM_POWER_MONITOR (((PORT_GSM_PMON) >> (PIN_GSM_PMON)) & 0x01)
+					#define PIN_READ_GSM_SOFTWARE_READY (((PORT_GSM_SWREADY) >> (PIN_GSM_SWREADY)) & 0x01)
+					#define PIN_READ_PHASE_R (((PORT_3V3_Sense_1) >> (PIN_3V3_Sense_1)) & 0x01)
+					#define PIN_READ_PHASE_S (((PORT_3V3_Sense_2) >> (PIN_3V3_Sense_2)) & 0x01)
+					#define PIN_READ_PHASE_T (((PORT_3V3_Sense_3) >> (PIN_3V3_Sense_3)) & 0x01)
+					#define PIN_READ_M1_RELAY (((PORT_3V3_Sense_4) >> (PIN_3V3_Sense_4)) & 0x01)
+					#define PIN_READ_M2_RELAY (((PORT_3V3_Sense_5) >> (PIN_3V3_Sense_5)) & 0x01)
+					#define PIN_READ_M3_RELAY (((PORT_3V3_Sense_6) >> (PIN_3V3_Sense_6)) & 0x01)
+					#define PIN_READ_THERMIC_RELAY (((PORT_3V3_Sense_7) >> (PIN_3V3_Sense_7)) & 0x01)
+					#define PIN_READ_MOTOR_PROTECTION (((PORT_3V3_Sense_8) >> (PIN_3V3_Sense_8)) & 0x01)
+
+					// Pin Write Macros
+					#define PIN_WRITE_START(_State) (_State ? PORT_RELAY_START |= (1 << PIN_RELAY_START) : PORT_RELAY_START &= ~(1 << PIN_RELAY_START))
+					#define PIN_WRITE_STOP(_State) (_State ? PORT_RELAY_STOP |= (1 << PIN_RELAY_STOP) : PORT_RELAY_STOP &= ~(1 << PIN_RELAY_STOP))
+					#define PIN_WRITE_3V8_EN(_State) (_State ? PORT_3V8_EN |= (1 << PIN_3V8_EN) : PORT_3V8_EN &= ~(1 << PIN_3V8_EN))
+					#define PIN_WRITE_RS485_DIR(_State) (_State ? PORT_RS485_DIR |= (1 << PIN_RS485_DIR) : PORT_RS485_DIR &= ~(1 << PIN_RS485_DIR))
+					#define PIN_WRITE_BUZZER(_State) (_State ? PORT_3V3_BUZZER |= (1 << PIN_3V3_BUZZER) : PORT_3V3_BUZZER &= ~(1 << PIN_3V3_BUZZER))
+					#define PIN_WRITE_FOTA_POWER_EN(_State) (_State ? PORT_FOTA_POWER_EN |= (1 << PIN_FOTA_POWER_EN) : PORT_FOTA_POWER_EN &= ~(1 << PIN_FOTA_POWER_EN))
+					#define PIN_WRITE_SD_EN(_State) (_State ? PORT_SD_EN |= (1 << PIN_SD_EN) : PORT_SD_EN &= ~(1 << PIN_SD_EN))
+					#define PIN_WRITE_GSM_COMMUNICATION_ENABLE(_State) (_State ? PORT_GSM_COMM_EN |= (1 << PIN_GSM_COMM_EN) : PORT_GSM_COMM_EN &= ~(1 << PIN_GSM_COMM_EN))
+					#define PIN_WRITE_GSM_ON_OFF(_State) (_State ? PORT_GSM_ONOFF |= (1 << PIN_GSM_ONOFF) : PORT_GSM_ONOFF &= ~(1 << PIN_GSM_ONOFF))
+					#define PIN_WRITE_GSM_SHUTDOWN(_State) (_State ? PORT_GSM_SDOWN |= (1 << PIN_GSM_SDOWN) : PORT_GSM_SDOWN &= ~(1 << PIN_GSM_SDOWN))
+
 				#endif
 
 				// B108AA Module
@@ -301,6 +340,14 @@
 					// Set RS485_SENSE_3 as Input with Pull-Down
 					DDR_RS485_SENSE_3 &= ~(1 << PIN_RS485_SENSE_3);
 					PORT_RS485_SENSE_3 &= ~(1 << PIN_RS485_SENSE_3);
+
+					// LED Macros
+					#define PIN_WRITE_RED_LED(_State) (_State ? PORT_MCU_LED_RED |= (1 << PIN_MCU_LED_RED) : PORT_MCU_LED_RED &= ~(1 << PIN_MCU_LED_RED))
+					#define PIN_WRITE_GREEN_LED(_State) (_State ? PORT_MCU_LED_GREEN |= (1 << PIN_MCU_LED_GREEN) : PORT_MCU_LED_GREEN &= ~(1 << PIN_MCU_LED_GREEN))
+					#define PIN_WRITE_BLUE_LED(_State) (_State ? PORT_MCU_LED_BLUE |= (1 << PIN_MCU_LED_BLUE) : PORT_MCU_LED_BLUE &= ~(1 << PIN_MCU_LED_BLUE))
+
+					// Power Macros
+					#define SLEEP() (PORT_DONE |= (1 << PIN_DONE))
 
 				#endif
 
@@ -518,7 +565,7 @@
 			}
 
 			// Heartbeat Function
-			void Heartbeat(void) {
+			inline void Heartbeat(void) {
 
 				// B107AA Module
 				#ifdef B107AA

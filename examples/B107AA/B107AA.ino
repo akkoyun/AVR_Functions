@@ -14,9 +14,6 @@ int x = 0;
 // Setup
 void setup() {
 
-	// Define Pin Out
-	Hardware.PinOut();
-
 	// Define Timer
 	Hardware.AVR_Timer();
 
